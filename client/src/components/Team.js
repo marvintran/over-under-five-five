@@ -1,12 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "../stylesheets/Team.css";
+import Logo from "./Logo";
 
 const Team = ({ team_id, full_name, short_name, logo_path }) => {
   return(
     <Fragment>
       <div>
-        <img src={logo_path} alt={short_name + " logo"}/>
-        <h2>{short_name}</h2>
+        <Logo
+          short_name={short_name}
+          logo_path={logo_path}
+        />
       </div>
     </Fragment>
   );
