@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import "../stylesheets/Logo.css";
 
 const Logo = ({ short_name, logo_path }) => {
@@ -6,7 +6,7 @@ const Logo = ({ short_name, logo_path }) => {
     <Fragment>
       <div>
         <img src={logo_path} alt={short_name + " logo"}/>
-        <h2>{short_name}</h2>
+        <h2 className={"header"}>{short_name}</h2>
       </div>
     </Fragment>
   );

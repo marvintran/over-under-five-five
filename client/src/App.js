@@ -25,14 +25,14 @@ const App = () => {
   return (
     <Fragment>
       <div className="App">
-          {teams.map(team => (
-            <Team
-              team_id={team.team_id}
-              full_name={team.full_name}
-              short_name={team.short_name}
-              logo_path={team.logo_path}
-            />
-          ))}
+        {teams.map(team => (
+          <Team
+            team_id={team.team_id}
+            full_name={team.full_name}
+            short_name={team.short_name}
+            logo_path={team.logo_path}
+          />
+        ))}
       </div>
     </Fragment>
   );

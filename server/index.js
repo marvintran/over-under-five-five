@@ -26,7 +26,7 @@ app.get("/games/:id/:offset?", async(req, res) => {
 
     const game = await pool.
     query(
-      "SELECT * FROM games WHERE away_id = $1 OR home_id = $1 ORDER BY game_date LIMIT 9 OFFSET $2",
+      "SELECT * FROM games WHERE away_id = $1 OR home_id = $1 ORDER BY game_date DESC LIMIT 9 OFFSET $2",
       [id, offset]
     );
 

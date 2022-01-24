@@ -1,6 +1,7 @@
-h2 {
-    color: white;
+.header {
+    color: #dadadc;
     margin-top: -20px;
+    margin-bottom: 16px;
     font-size: 20px;
 }
 
