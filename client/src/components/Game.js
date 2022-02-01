@@ -41,18 +41,24 @@ const Game = ({ curr_team_id, home_id, home_goals, away_goals, game_result }) =>
       <style type="text/css">
         {`
           .btn-red {
-              background-color: #811111;
+              background-color: #861c1c;
               color: #dadadc;
+              border-radius: 10px;
+              box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+              border: 1px solid #373d48
           }
           
           .btn-green {
-              background-color: #013220;
+              background-color: #023321;
               color: #dadadc;
+              border-radius: 10px;
+              box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+              border: 1px solid #373d48
           }
           
           .btn-xxl {
-              padding: .5rem 1rem;
-              font-size: 1.5rem;
+              min-width: 76.7px;
+              font-size: 1.3rem;
               margin: 10px;
           }
           
@@ -65,18 +71,16 @@ const Game = ({ curr_team_id, home_id, home_goals, away_goals, game_result }) =>
           }
         `}
       </style>
-      <div>
-        { home_goals + away_goals > 5
-          ? <Button variant="green" size="xxl" className={"green-btn"}>
-              <div>{gameResult}</div>
-              {goals}
-            </Button>
-          : <Button variant="red" size="xxl" className={"red-btn"}>
-              <div>{gameResult}</div>
-              {goals}
-            </Button>
-        }
-      </div>
+      { home_goals + away_goals > 5
+        ? <Button variant="green" size="xxl" className={"green-btn"}>
+            <div>{gameResult}</div>
+            {goals}
+          </Button>
+        : <Button variant="red" size="xxl" className={"red-btn"}>
+            <div>{gameResult}</div>
+            {goals}
+          </Button>
+      }
     </Fragment>
   );
 }

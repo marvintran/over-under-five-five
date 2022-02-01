@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState  } from "react";
 import './App.css';
 
+import Container from 'react-bootstrap/Container';
+
 // components
 import Team from "./components/Team";
 
@@ -24,7 +26,7 @@ const App = () => {
 
   return (
     <Fragment>
-      <div className="App">
+      <Container className="App">
         {teams.map(team => (
           <Team
             team_id={team.team_id}
@@ -33,7 +35,7 @@ const App = () => {
             logo_path={team.logo_path}
           />
         ))}
-      </div>
+      </Container>
     </Fragment>
   );
 }

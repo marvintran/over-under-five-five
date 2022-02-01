@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "../stylesheets/GamesList.css";
 import Game from "./Game";
 
 const GamesList = ({ team_id }) => {
@@ -22,17 +21,15 @@ const GamesList = ({ team_id }) => {
 
   return(
     <Fragment>
-      <div className={"games-list"}>
-        {games.map(game => (
-          <Game
-            curr_team_id={team_id}
-            home_id={game.home_id}
-            home_goals={game.home_goals}
-            away_goals={game.away_goals}
-            game_result={game.game_result}
-          />
-        ))}
-      </div>
+      {games.map(game => (
+        <Game
+          curr_team_id={team_id}
+          home_id={game.home_id}
+          home_goals={game.home_goals}
+          away_goals={game.away_goals}
+          game_result={game.game_result}
+        />
+      ))}
     </Fragment>
   );
 }
