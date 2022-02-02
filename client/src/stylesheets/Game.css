@@ -1,0 +1,29 @@
+.btn-red {
+    background-color: #861c1c;
+    color: #dadadc;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border: 1px solid #373d48
+}
+
+.btn-green {
+    background-color: #023321;
+    color: #dadadc;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border: 1px solid #373d48
+}
+
+.btn-xxl {
+    min-width: 78px;
+    font-size: 1.3rem;
+    margin: 8px;
+}
+
+.btn:focus {
+    color: yellow;
+}
+
+.btn:hover {
+    color: yellow;
+}
