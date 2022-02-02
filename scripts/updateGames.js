@@ -46,10 +46,24 @@ async function getGames(gameIDs) {
   return games;
 }
 
+async function seenGame(gameID) {
+  const response = await fetch("http://localhost:5000/game/"+gameID);
+  const data = await response.json();
+
+  return Object.keys(data).length !== 0;
+}
+
 async function getGameIDs() {
   const gamesMap = new Map();
 
-  const response = await fetch("https://statsapi.web.nhl.com/api/v1/schedule?startDate=2022-01-28&endDate=2022-01-31");
+  const today = new Date();
+  const todayFormatted = today.toISOString().substr(0, 10);
+
+  const twoDaysAgo = new Date(today);
+  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  const twoDaysAgoFormatted = today.toISOString().substr(0, 10);
+
+  const response = await fetch('https://statsapi.web.nhl.com/api/v1/schedule?startDate='+twoDaysAgoFormatted+'&endDate='+todayFormatted);
   const data = await response.json();
 
   const datesList = data['dates'];
@@ -76,17 +90,10 @@ async function getGameIDs() {
   return gamesMap;
 }
 
-async function seenGame(gameID) {
-  const response = await fetch("http://localhost:5000/game/"+gameID);
-  const data = await response.json();
-
-  return Object.keys(data).length !== 0;
-}
-
 async function updateGames() {
   const gameIDs = await getGameIDs();// returns Map<gameID, gameDate>
   const hockeyGames = await getGames(gameIDs);// returns array of objects
-  addGamesToDatabase(hockeyGames);
+  await addGamesToDatabase(hockeyGames);
 }
 
-updateGames();// run using node updateGames.js
+updateGames();// run using node .\updateGames.js
