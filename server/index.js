@@ -18,19 +18,18 @@ app.get("/teams", async(req, res) => {
   }
 })
 
-// get 9 games for a specific team or the next 9 games with offset
+// get 12 games for a specific team or the next 12 games with offset
 app.get("/games/:id/:offset?", async(req, res) => {
   try {
     const id = req.params.id;
     const offset = req.params.offset;
 
-    const game = await pool.
-    query(
-      "SELECT * FROM games WHERE away_id = $1 OR home_id = $1 ORDER BY game_date DESC LIMIT 9 OFFSET $2",
+    const games = await pool.query(
+      "SELECT * FROM games WHERE away_id = $1 OR home_id = $1 ORDER BY game_date DESC LIMIT 12 OFFSET $2",
       [id, offset]
     );
 
-    res.json(game.rows);
+    res.json(games.rows);
   } catch (err) {
     console.error(err.message)
   }
