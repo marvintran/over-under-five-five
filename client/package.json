@@ -1,6 +1,6 @@
 {
   "name": "hockey-goals",
-  "homepage": ".",
+  "homepage": "https://over-under-five-five.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
