@@ -4,6 +4,7 @@ const cors = require("cors");
 const ENV = process.env.DB_ENVIRONMENT || "development";
 const PORT = process.env.DB_PORT || 5000;
 const pool = require("./db");
+const path = require('path');
 
 // middleware
 app.use(cors());
