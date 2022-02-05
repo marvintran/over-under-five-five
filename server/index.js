@@ -1,15 +1,24 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const ENV = process.env.DB_ENVIRONMENT || "development";
+const PORT = process.env.DB_PORT || 5000;
 const pool = require("./db");
 
 // middleware
 app.use(cors());
 app.use(express.json());
 
+if (ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.use((req,res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+}
+
 // ROUTES
 
-app.get("/teams", async(req, res) => {
+app.get("/api/teams", async(req, res) => {
   try {
     const allTeams = await pool.query("SELECT * FROM teams ORDER BY short_name");
     res.json(allTeams.rows);
@@ -19,7 +28,7 @@ app.get("/teams", async(req, res) => {
 })
 
 // get 12 games for a specific team or the next 12 games with offset
-app.get("/games/:id/:offset?", async(req, res) => {
+app.get("/api/games/:id/:offset?", async(req, res) => {
   try {
     const id = req.params.id;
     const offset = req.params.offset;
@@ -35,7 +44,7 @@ app.get("/games/:id/:offset?", async(req, res) => {
   }
 })
 
-app.get("/game/:id", async(req, res) => {
+app.get("/api/game/:id", async(req, res) => {
   try {
     const id = req.params.id;
 
@@ -51,7 +60,7 @@ app.get("/game/:id", async(req, res) => {
   }
 })
 
-app.post("/games", async(req, res) => {
+app.post("/api/games", async(req, res) => {
   try {
     const date = new Date(req.body.game_date).toUTCString();// https://stackoverflow.com/a/22835394
 
@@ -66,6 +75,6 @@ app.post("/games", async(req, res) => {
   }
 })
 
-app.listen(5000, () => {
-  console.log("server has started on port 5000");
+app.listen(PORT, () => {
+  console.log(`Server has started on port ${PORT}`);
 });

@@ -11,7 +11,7 @@ const App = () => {
 
   const getTeams = async () => {
     try {
-      const response = await fetch("http://localhost:5000/teams")
+      const response = await fetch("/api/teams")
       const jsonData = await response.json()
 
       setTeams(jsonData);

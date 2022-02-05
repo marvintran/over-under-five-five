@@ -6,7 +6,7 @@ const GamesList = ({ team_id }) => {
 
   const getGames = async () => {
     try {
-      const response = await fetch("http://localhost:5000/games/"+team_id)
+      const response = await fetch("/api/games/"+team_id)
       const jsonData = await response.json()
 
       setGames(jsonData);
