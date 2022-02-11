@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const PORT = process.env.REACT_APP_DB_PORT;
+const PORT = process.env.PORT || 5000;
 const pool = require("./db");
 const path = require('path');
 
