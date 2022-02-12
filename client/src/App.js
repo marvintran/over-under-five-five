@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     const getTeams = async () => {
       try {
-        const response = await fetch("https://over-under-five-five.herokuapp.com/api/teams")
+        const response = await fetch("/api/teams")
         const jsonData = await response.json()
 
         setTeams(jsonData);
