@@ -1,2 +1,2 @@
 # Invisbily proxy to a third party API
-/api/*              https://over-under-five-five.herokuapp.com/:splat
+/api/*              https://over-under-five-five.herokuapp.com/api/:splat
