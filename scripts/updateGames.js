@@ -1,9 +1,11 @@
+#!/usr/bin/env node
+
 import fetch from 'node-fetch'
 import dotenv from 'dotenv'
 dotenv.config()
 
 const baseUrl = process.env.APP_URL || "http://localhost:5000";
-
+console.log(baseUrl);
 async function addGamesToDatabase(hockeyGames) {
   for(let i = 0; i < hockeyGames.length; i++) {
     const currGame = hockeyGames[i];
