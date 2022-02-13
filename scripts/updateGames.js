@@ -1,10 +1,14 @@
 import fetch from 'node-fetch'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const baseUrl = process.env.APP_URL || "http://localhost:5000";
 
 async function addGamesToDatabase(hockeyGames) {
   for(let i = 0; i < hockeyGames.length; i++) {
     const currGame = hockeyGames[i];
 
-    const response = await fetch("http://localhost:5000/api/games", {
+    const response = await fetch(baseUrl+"/api/games", {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(currGame)})
@@ -47,7 +51,7 @@ async function getGames(gameIDs) {
 }
 
 async function seenGame(gameID) {
-  const response = await fetch("http://localhost:5000/api/game/"+gameID);
+  const response = await fetch(baseUrl+"/api/game/"+gameID);
   const data = await response.json();
 
   return Object.keys(data).length !== 0;
