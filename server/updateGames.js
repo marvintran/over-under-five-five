@@ -74,7 +74,7 @@ async function getGameIDs() {
 
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayFormatted = today.toISOString().substr(0, 10);
+  const yesterdayFormatted = yesterday.toISOString().substr(0, 10);
 
   await axios.get('https://statsapi.web.nhl.com/api/v1/schedule?startDate='+yesterdayFormatted+'&endDate='+todayFormatted)
     .then(async function (response) {
