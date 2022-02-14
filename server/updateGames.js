@@ -3,6 +3,8 @@ require('dotenv').config();
 const axios = require('axios');
 
 async function updateOverUnderCount() {
+  console.log("Updating over under count");
+
   const allTeams = await pool.query("SELECT * FROM teams ORDER BY short_name");
   const teamRows = allTeams.rows;
 
