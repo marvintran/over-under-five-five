@@ -72,11 +72,11 @@ async function getGameIDs() {
   const today = new Date();
   const todayFormatted = today.toISOString().substr(0, 10);
 
-  const twoDaysAgo = new Date(today);
-  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-  const twoDaysAgoFormatted = today.toISOString().substr(0, 10);
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayFormatted = today.toISOString().substr(0, 10);
 
-  await axios.get('https://statsapi.web.nhl.com/api/v1/schedule?startDate=2022-02-12&endDate=2022-02-12')
+  await axios.get('https://statsapi.web.nhl.com/api/v1/schedule?startDate='+yesterdayFormatted+'&endDate='+todayFormatted)
     .then(async function (response) {
       const data = response.data;
 
@@ -88,7 +88,6 @@ async function getGameIDs() {
         const gameDate = currDate['date'];
 
         const gamesList = currDate['games'];
-
         for (let j = 0; j < gamesList.length; j++) {
           const currGame = gamesList[j];
 
