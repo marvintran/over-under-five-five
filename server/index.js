@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.get("/api/teams", async(req, res) => {
   try {
-    const allTeams = await pool.query("SELECT * FROM teams ORDER BY short_name");
+    const allTeams = await pool.query("SELECT * FROM teams ORDER BY over_under_count DESC, short_name ASC");
     res.json(allTeams.rows);
   } catch (err) {
     console.error(err.message)
