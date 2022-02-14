@@ -150,10 +150,10 @@ async function updateGames() {
   if(hockeyGames.length > 0) {
     console.log("Adding " + hockeyGames.length + " new games");
     await addGamesToDatabase(hockeyGames);
-    await updateOverUnderCount();
   } else {
     console.log("No new games");
   }
+  await updateOverUnderCount();
 }
 
 updateGames();// run using node .\updateGames.js
