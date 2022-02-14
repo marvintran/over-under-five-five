@@ -145,7 +145,7 @@ async function updateGames() {
   const gameIDs = await getGameIDs();// returns Map<gameID, gameDate>
   const hockeyGames = await getGames(gameIDs);// returns array of objects
 
-  if(hockeyGame.length > 0) {
+  if(hockeyGames.length > 0) {
     console.log("Adding " + hockeyGames.length + " new games");
     await addGamesToDatabase(hockeyGames);
     await updateOverUnderCount();
