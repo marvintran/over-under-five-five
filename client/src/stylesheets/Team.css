@@ -3,6 +3,10 @@
     border-top: 2px solid #373d48;
 }
 
+.row {
+    max-width: 1208px;
+}
+
 .logo {
     display: flex;
     flex-direction: column;

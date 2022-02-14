@@ -15,8 +15,9 @@
 }
 
 .btn-xxl {
-    min-width: 78px;
-    font-size: 1.3rem;
+    min-width: 74px;
+    min-height: 72px;
+    font-size: 1.2rem;
     margin: 8px;
 }
 
