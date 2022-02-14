@@ -18,7 +18,7 @@ const Team = ({ team_id, full_name, short_name, logo_path }) => {
             logo_path={logo_path}
           />
         </Col>
-        <Col xs={12} sm={10} md={11} >
+        <Col className="gamesList" xs={12} sm={10} md={11} >
           <GamesList
             team_id={team_id}
           />
