@@ -2,6 +2,42 @@ const pool = require("./db");
 require('dotenv').config();
 const axios = require('axios');
 
+async function updateOverUnderCount() {
+  console.log("Updating over under count");
+
+  const allTeams = await pool.query("SELECT * FROM teams ORDER BY short_name");
+  const teamRows = allTeams.rows;
+
+  for (let i = 0; i < teamRows.length; i++) {
+    const currTeam = teamRows[i];
+    const currTeamID = currTeam.team_id;
+
+    const games = await pool.query(
+      "SELECT * FROM games WHERE away_id = $1 OR home_id = $1 ORDER BY game_date DESC LIMIT 12",
+      [currTeamID]
+    );
+    const gameRows = games.rows;
+
+    let count = 0;
+
+    for (let j = 0; j < gameRows.length; j++) {
+      const homeGoals = gameRows[j].home_goals;
+      const awayGoals = gameRows[j].away_goals;
+
+      if(homeGoals + awayGoals > 5) {
+        count++;
+      } else {
+        break;
+      }
+    }
+
+    const updateOverUnder = await pool.query(
+      "UPDATE teams SET over_under_count = $1 WHERE team_id = $2",
+      [count, currTeamID]
+    );
+  }
+}
+
 async function addGamesToDatabase(hockeyGames) {
   for(let i = 0; i < hockeyGames.length; i++) {
     const currGame = hockeyGames[i];
@@ -110,8 +146,14 @@ async function getGameIDs() {
 async function updateGames() {
   const gameIDs = await getGameIDs();// returns Map<gameID, gameDate>
   const hockeyGames = await getGames(gameIDs);// returns array of objects
-  console.log("Adding " + hockeyGames.length + " new games")
-  await addGamesToDatabase(hockeyGames);
+
+  if(hockeyGames.length > 0) {
+    console.log("Adding " + hockeyGames.length + " new games");
+    await addGamesToDatabase(hockeyGames);
+    await updateOverUnderCount();
+  } else {
+    console.log("No new games");
+  }
 }
 
 updateGames();// run using node .\updateGames.js
