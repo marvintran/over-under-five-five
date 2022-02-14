@@ -9,18 +9,18 @@ import Team from "./components/Team";
 const App = () => {
   const [teams, setTeams] = useState([]);
 
-  const getTeams = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/teams")
-      const jsonData = await response.json()
-
-      setTeams(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
   useEffect(() => {
+    const getTeams = async () => {
+      try {
+        const response = await fetch("/api/teams")
+        const jsonData = await response.json()
+
+        setTeams(jsonData);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
     getTeams();
   }, []);
 
